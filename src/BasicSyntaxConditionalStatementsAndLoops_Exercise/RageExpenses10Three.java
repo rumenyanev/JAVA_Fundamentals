@@ -7,7 +7,6 @@ import java.util.Scanner;
 @SuppressWarnings("Duplicates")
 public class RageExpenses10Three {
 
-
         @SuppressWarnings("Duplicates")
         public static void main(String[] args) {
             Scanner scanner = new Scanner(System.in);
