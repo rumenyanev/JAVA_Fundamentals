@@ -2,6 +2,7 @@ package BasicSyntaxConditionalStatementsAndLoops_Exercise;
 
 import java.util.Scanner;
 
+@SuppressWarnings("Duplicates")
 public class RageExpenses10Two {
 
         public static void main(String[] args) {

@@ -31,8 +31,8 @@ public class RageExpenses10 {
             }
         }
         //6 5 4 3 2 1
-        for (int i = 0; i < gameSet.size(); i++) {
-            setPrice += gameSet.get(i);
+        for (Double aDouble : gameSet) {
+            setPrice += aDouble;
         }
 
         /*System.out.println();
