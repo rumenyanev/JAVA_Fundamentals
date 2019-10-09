@@ -1,5 +1,4 @@
 package basicSyntaxConditionalStatementsAndLoops_MoreExercise;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -21,16 +20,15 @@ public class GamingStore03 {
         games.put("RoverWatch Origins Edition", new Game("RoverWatch Origins Edition", 39.99));
 
         String game = scanner.nextLine();
-        if (balance < priceGame) {
-            System.out.println("Too Expensive");
-            return;
-        }
         while (!game.equals("Game Time")) {
 
             if (games.containsKey(game)) {
                 priceGame = games.get(game).getPrice();
                 currentBalance -= priceGame;
-              System.out.printf("Bought %s%n", game);
+                if (balance < priceGame) {
+                    System.out.println("Too Expensive");
+                }
+                System.out.printf("Bought %s%n", game);
 
                 if (currentBalance <= 0) {
                     System.out.println("Out of money!");
@@ -85,7 +83,7 @@ Additionally, the program should obey the following conditions:
 ⦁	Alternatively, if the user is trying to buy a game which they can’t afford, print “Too Expensive” and read the next line.
 When you receive “Game Time”, print the user’s remaining money and total spent on games, rounded to the 2nd decimal place.
 Examples
-Input
+Input	Output
 120
 RoverWatch
 Honored 2
@@ -95,29 +93,18 @@ Output
 Bought RoverWatch
 Bought Honored 2
 Total spent: $89.98. Remaining: $30.02
-
-Input
 19.99
 Reimen origin
 RoverWatch
 Zplinter Zell
-Game Time
-
-Output
-Not Found
+Game Time	Not Found
 Too Expensive
 Bought Zplinter Zell
 Out of mo-ney!
-
-
-Input
 79.99
 OutFall 4
 RoverWatch Origins Edition
-Game Time
-
-Output
-Bought OutFall 4
+Game Time	Bought OutFall 4
 Bought RoverWatch Origins Edition
 Total spent: $79.98. Remaining: $0.01
 
