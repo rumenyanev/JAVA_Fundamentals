@@ -1,8 +1,6 @@
 package basicSyntaxConditionalStatementsAndLoops_MoreExercise;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class GamingStore03 {
     public static void main(String[] args) {
@@ -10,31 +8,27 @@ public class GamingStore03 {
 
         double currentBalance = Double.parseDouble(scanner.nextLine());
 
-        List<Game> games = new ArrayList<>();
-        games.add(new Game("OutFall 4", 39.99));
-        games.add(new Game("CS: OG", 15.99));
-        games.add(new Game("Zplinter Zell", 19.99));
-        games.add(new Game("Honored 2", 59.99));
-        games.add(new Game("RoverWatch", 29.99));
-        games.add(new Game("RoverWatch Origins Edition", 39.99));
+        Map<String, Game> games = new LinkedHashMap<>();
+        games.put("OutFall 4", new Game("OutFall 4", 39.99));
+        games.put("CS: OG", new Game("CS: OG", 15.99));
+        games.put("Zplinter Zell", new Game("Zplinter Zell", 19.99));
+        games.put("Honored 2", new Game("Honored 2", 59.99));
+        games.put("RoverWatch", new Game("RoverWatch", 29.99));
+        games.put("RoverWatch Origins Edition", new Game("RoverWatch Origins Edition", 39.99));
 
         String game = scanner.nextLine();
+        while (!game.equals("Game Time")) {
 
-        while (!game.equals("Game Time")){
-
-            //proverki
-
-
-            //...
+            if (games.containsKey(game)){
+                double priceGame = games.get(game).getPrice();
+                //...
+            }else{
+                //This game is not exist
+            }
 
             game = scanner.nextLine();
         }
 
-
-
-        if (games.stream().anyMatch(e -> e.getName().equals("game"))) {
-
-        }
 
     }
 }
