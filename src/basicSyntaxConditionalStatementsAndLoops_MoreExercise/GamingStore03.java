@@ -32,9 +32,8 @@ public class GamingStore03 {
                 if (currentBalance < priceGame && priceGame > 0) {
                     System.out.println("Too Expensive");
                     game = scanner.nextLine();
-                     continue;
-                }
-else if(currentBalance >= priceGame) {
+                    continue;
+                } else if (currentBalance >= priceGame) {
                     currentBalance -= priceGame;
                     System.out.printf("Bought %s%n", game);
                 }
