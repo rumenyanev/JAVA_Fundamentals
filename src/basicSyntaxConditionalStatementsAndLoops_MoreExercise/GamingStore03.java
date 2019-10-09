@@ -19,11 +19,16 @@ public class GamingStore03 {
         String game = scanner.nextLine();
         while (!game.equals("Game Time")) {
 
-            if (games.containsKey(game)){
+            if (games.containsKey(game)) {
                 double priceGame = games.get(game).getPrice();
-                //...
-            }else{
-                //This game is not exist
+
+                if (currentBalance <= 0) {
+                    System.out.println("Out of money!");
+                }
+
+
+            } else {
+                System.out.println("Not Found");
             }
 
             game = scanner.nextLine();
