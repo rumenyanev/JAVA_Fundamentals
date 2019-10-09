@@ -1,51 +1,48 @@
 package basicSyntaxConditionalStatementsAndLoops_MoreExercise;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class GamingStore03 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        double currentBalance = Double.parseDouble(scanner.nextLine());
-        double price;
-        List<Game> games = new ArrayList<>();
-        games.add(new Game("OutFall 4", 39.99));
-        games.add(new Game("CS: OG", 15.99));
-        games.add(new Game("Zplinter Zell", 19.99));
-        games.add(new Game("Honored 2", 59.99));
-        games.add(new Game("RoverWatch", 29.99));
-        games.add(new Game("RoverWatch Origins Edition", 39.99));
+        double balance = Double.parseDouble(scanner.nextLine());
+        double priceGame = 0.0;
+        double currentBalance = balance - priceGame;
+
+        Map<String, Game> games = new LinkedHashMap<>();
+        games.put("OutFall 4", new Game("OutFall 4", 39.99));
+        games.put("CS: OG", new Game("CS: OG", 15.99));
+        games.put("Zplinter Zell", new Game("Zplinter Zell", 19.99));
+        games.put("Honored 2", new Game("Honored 2", 59.99));
+        games.put("RoverWatch", new Game("RoverWatch", 29.99));
+        games.put("RoverWatch Origins Edition", new Game("RoverWatch Origins Edition", 39.99));
 
         String game = scanner.nextLine();
+        if (balance < priceGame) {
+            System.out.println("Too Expensive");
+            return;
+        }
+        while (!game.equals("Game Time")) {
 
-        while (!game.equals("Game Time")){
+            if (games.containsKey(game)) {
+                priceGame = games.get(game).getPrice();
+                currentBalance -= priceGame;
+              System.out.printf("Bought %s%n", game);
 
-            if(!game.equals("OutFall 4")&&
-                    !game.equals("CS: OG")&&
-                    !game.equals("Zplinter Zell")&&
-                    !game.equals("Honored 2")&&
-                    !game.equals("RoverWatch")&&
-                    !game.equals("RoverWatch Origins Edition")){
+                if (currentBalance <= 0) {
+                    System.out.println("Out of money!");
+                }
+
+            } else {
                 System.out.println("Not Found");
-            }else if(currentBalance == 0 ){
-                System.out.println("Out of money!");
-                break;
             }
-
-
-            //...
 
             game = scanner.nextLine();
         }
-
-
-
-        if (games.stream().anyMatch(e -> e.getName().equals("game"))) {
-            games.g
-        }
-
+        System.out.printf("Total spent: $%.2f. Remaining: $%.2f", balance - currentBalance, currentBalance);
     }
 }
 
@@ -60,11 +57,11 @@ class Game {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public double getPrice() {
-        return this.price;
+        return price;
     }
 }
 /*⦁	Gaming Store
@@ -88,7 +85,7 @@ Additionally, the program should obey the following conditions:
 ⦁	Alternatively, if the user is trying to buy a game which they can’t afford, print “Too Expensive” and read the next line.
 When you receive “Game Time”, print the user’s remaining money and total spent on games, rounded to the 2nd decimal place.
 Examples
-Input	Output
+Input
 120
 RoverWatch
 Honored 2
@@ -98,18 +95,29 @@ Output
 Bought RoverWatch
 Bought Honored 2
 Total spent: $89.98. Remaining: $30.02
+
+Input
 19.99
 Reimen origin
 RoverWatch
 Zplinter Zell
-Game Time	Not Found
+Game Time
+
+Output
+Not Found
 Too Expensive
 Bought Zplinter Zell
 Out of mo-ney!
+
+
+Input
 79.99
 OutFall 4
 RoverWatch Origins Edition
-Game Time	Bought OutFall 4
+Game Time
+
+Output
+Bought OutFall 4
 Bought RoverWatch Origins Edition
 Total spent: $79.98. Remaining: $0.01
 
