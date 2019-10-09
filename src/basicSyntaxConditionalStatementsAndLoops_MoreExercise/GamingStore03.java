@@ -9,7 +9,7 @@ public class GamingStore03 {
         Scanner scanner = new Scanner(System.in);
 
         double currentBalance = Double.parseDouble(scanner.nextLine());
-
+        double price;
         List<Game> games = new ArrayList<>();
         games.add(new Game("OutFall 4", 39.99));
         games.add(new Game("CS: OG", 15.99));
@@ -22,7 +22,17 @@ public class GamingStore03 {
 
         while (!game.equals("Game Time")){
 
-            //proverki
+            if(!game.equals("OutFall 4")&&
+                    !game.equals("CS: OG")&&
+                    !game.equals("Zplinter Zell")&&
+                    !game.equals("Honored 2")&&
+                    !game.equals("RoverWatch")&&
+                    !game.equals("RoverWatch Origins Edition")){
+                System.out.println("Not Found");
+            }else if(currentBalance == 0 ){
+                System.out.println("Out of money!");
+                break;
+            }
 
 
             //...
@@ -33,7 +43,7 @@ public class GamingStore03 {
 
 
         if (games.stream().anyMatch(e -> e.getName().equals("game"))) {
-
+            games.g
         }
 
     }
@@ -50,11 +60,11 @@ class Game {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public double getPrice() {
-        return price;
+        return this.price;
     }
 }
 /*⦁	Gaming Store
