@@ -1,4 +1,4 @@
-package DataTypesAndVariables_Lab;
+package dataTypesAndVariables_Lab;
 
 import java.io.BufferedReader;
 import java.io.IOException;
