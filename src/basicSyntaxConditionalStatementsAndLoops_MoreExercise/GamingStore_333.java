@@ -2,7 +2,7 @@ package basicSyntaxConditionalStatementsAndLoops_MoreExercise;
 
 import java.util.Scanner;
 
-public class GamingStore_3 {
+public class GamingStore_333 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
