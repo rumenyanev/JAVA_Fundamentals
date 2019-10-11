@@ -9,23 +9,30 @@ public class SpiceMustFlow09 {
         BufferedReader reader = new BufferedReader
                 (new InputStreamReader(System.in));
 
-        int spices = Integer.parseInt(reader.readLine());
+        int numStartingSpice = Integer.parseInt(reader.readLine());
         int days = 0;
         int sumSpice = 0;
 
-
-
-        /*while (numStartingSpice > 100) {
+        while (numStartingSpice > 100) {
             days++;
-            sumSpice += (numStartingSpice - 26);
+            sumSpice += (numStartingSpice - 26 * days);
 
 
             numStartingSpice -= 10;
 
-        }*/
-
+        }
+        System.out.println(days);
+        System.out.println(sumSpice);
     }
 }
+
+/*
+450
+
+
+36
+8938
+ */
 /*Spice Must Flow
 Spice is Love, Spice is Life. And most importantly, Spice must flow. It must be extracted from the scorching sands
  of Arrakis, under constant threat of giant sand worms. To make the work as efficient as possible,
