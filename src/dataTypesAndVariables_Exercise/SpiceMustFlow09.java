@@ -12,15 +12,27 @@ public class SpiceMustFlow09 {
         int numStartingSpice = Integer.parseInt(reader.readLine());
         int days = 0;
         int sumSpice = 0;
+        if (numStartingSpice < 100) {
+            printResult(days, sumSpice);
+        }
 
-        while (numStartingSpice > 100) {
+
+        while (numStartingSpice >= 100) {
+
+            sumSpice += numStartingSpice;
+            sumSpice -= 26;
             days++;
-            sumSpice += (numStartingSpice - 26 * days);
-
-
             numStartingSpice -= 10;
+            if (numStartingSpice < 100) {
+                sumSpice -= 26;
+                printResult(days, sumSpice);
+                break;
+            }
 
         }
+    }
+
+    private static void printResult(int days, int sumSpice) {
         System.out.println(days);
         System.out.println(sumSpice);
     }
