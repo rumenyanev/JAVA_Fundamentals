@@ -1,48 +1,31 @@
-package BasicSyntaxConditionalStatementsAndLoops_Exercise;
+package basicSyntaxConditionalStatementsAndLoops_Exercise;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-public class RageExpenses10 {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+@SuppressWarnings("Duplicates")
+public class RageExpenses10Two {
 
-        int countLostGames = Integer.parseInt(scanner.nextLine());
-        double headsetPrice = Double.parseDouble(scanner.nextLine());
-        double mousePrice = Double.parseDouble(scanner.nextLine());
-        double keyboardPrice = Double.parseDouble(scanner.nextLine());
-        double displayPrice = Double.parseDouble(scanner.nextLine());
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
 
-        List<Double> gameSet = new ArrayList<>();
-        double setPrice = 0;
-        for (int i = 1; i < countLostGames + 1; i++) {
-            if (i % 12 == 0) {
-                gameSet.add(displayPrice);
-            }
-            if (i % 6 == 0) {
-                gameSet.add(keyboardPrice);
-            }
-            if (i % 3 == 0) {
-                gameSet.add(mousePrice);
-            }
-            if (i % 2 == 0) {
-                gameSet.add(headsetPrice);
-            }
+            int lostGame = Integer.parseInt(scanner.nextLine());
+            double headsetPrice = Double.parseDouble(scanner.nextLine());
+            double  mousePrice = Double.parseDouble(scanner.nextLine());
+            double keyboardPrice = Double.parseDouble(scanner.nextLine());
+            double displayPrice = Double.parseDouble(scanner.nextLine());
+
+            int newHeadset = lostGame / 2;
+            int newMouse = lostGame / 3;
+            int newKeyboards = lostGame / 6;
+            int newDisplay = lostGame / 12;
+            double expenses =
+                    headsetPrice * newHeadset + mousePrice * newMouse + keyboardPrice * newKeyboards + displayPrice *newDisplay;
+            System.out.printf("Rage expenses: %.2f lv.",expenses);
         }
-        //6 5 4 3 2 1
-        for (Double aDouble : gameSet) {
-            setPrice += aDouble;
-        }
-
-        /*System.out.println();
-        for (int j = gameSet.size(); j >= 0; j--) {
-            setPrice += j;
-        }*/
-
-        System.out.printf("Rage expenses: %.2f lv.",setPrice);
     }
-}
+/*
+Integer sum = integers.stream()
+  .reduce(0, (a, b) -> a + b);
 /*Rage Expenses
 As a MOBA challenger player, Pesho has the bad habit to trash his PC when he loses a game and rage quits.
  His gaming setup consists of headset, mouse, keyboard and display. You will receive Pesho`s lost games count.

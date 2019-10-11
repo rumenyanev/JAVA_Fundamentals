@@ -1,12 +1,17 @@
 package basicSyntaxConditionalStatementsAndLoops_MoreExercise;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 
 public class GamingStore03 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        double currentBalance = Double.parseDouble(scanner.nextLine());
+        double balance = Double.parseDouble(scanner.nextLine());
+        double priceGame = 0.0;
+        double currentBalance = balance;
 
         Map<String, Game> games = new LinkedHashMap<>();
         games.put("OutFall 4", new Game("OutFall 4", 39.99));
@@ -19,22 +24,33 @@ public class GamingStore03 {
         String game = scanner.nextLine();
         while (!game.equals("Game Time")) {
 
+
             if (games.containsKey(game)) {
-                double priceGame = games.get(game).getPrice();
 
-                if (currentBalance <= 0) {
-                    System.out.println("Out of money!");
+                priceGame = games.get(game).getPrice();
+
+                if (currentBalance < priceGame && priceGame > 0) {
+                    System.out.println("Too Expensive");
+                    game = scanner.nextLine();
+                    continue;
+                } else if (currentBalance >= priceGame) {
+                    currentBalance -= priceGame;
+                    System.out.printf("Bought %s%n", game);
                 }
-
 
             } else {
                 System.out.println("Not Found");
             }
+            if (currentBalance <= 0) {
+                System.out.println("Out of money!");
+                return;
+            }
 
             game = scanner.nextLine();
+
+
         }
-
-
+        System.out.printf("Total spent: $%.2f. Remaining: $%.2f", balance - currentBalance, currentBalance);
     }
 }
 
@@ -49,14 +65,17 @@ class Game {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public double getPrice() {
-        return price;
+        return this.price;
     }
 }
-/*⦁	Gaming Store
+
+/*
+
+⦁	Gaming Store
 Write a program, which helps you buy the games. The valid games are the following games in this table:
 Name	                     Price
 
@@ -77,7 +96,7 @@ Additionally, the program should obey the following conditions:
 ⦁	Alternatively, if the user is trying to buy a game which they can’t afford, print “Too Expensive” and read the next line.
 When you receive “Game Time”, print the user’s remaining money and total spent on games, rounded to the 2nd decimal place.
 Examples
-Input	Output
+Input
 120
 RoverWatch
 Honored 2
@@ -87,18 +106,28 @@ Output
 Bought RoverWatch
 Bought Honored 2
 Total spent: $89.98. Remaining: $30.02
+
+Input
 19.99
 Reimen origin
 RoverWatch
 Zplinter Zell
-Game Time	Not Found
+Game Time
+
+Output
+Not Found
 Too Expensive
 Bought Zplinter Zell
-Out of mo-ney!
+Out of money!
+
+Input
 79.99
 OutFall 4
 RoverWatch Origins Edition
-Game Time	Bought OutFall 4
+Game Time
+
+Output
+Bought OutFall 4
 Bought RoverWatch Origins Edition
 Total spent: $79.98. Remaining: $0.01
 
