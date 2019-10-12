@@ -22,9 +22,7 @@ public class PokeMon10 {
             if (n == (m * 2)) {
                 n1 /= y;
             }
-
         }
-
         System.out.println(n1);
         System.out.println(count);
     }
