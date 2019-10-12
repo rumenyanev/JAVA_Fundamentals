@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class PokeMon10 {
-    public static void main(String[] args) throws IOException {///80/100 ?
+    public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader
                 (new InputStreamReader(System.in));
 
@@ -13,17 +13,26 @@ public class PokeMon10 {
         int m = Integer.parseInt(reader.readLine());
         int y = Integer.parseInt(reader.readLine());
 
-        int count = 0;
-        int n1 = n;
 
-        while (n1 >= m) {
-            n1 -= m;
+
+        pokemon(n,m,y);
+
+
+
+    }
+
+    private static void pokemon(int n,int m,int y) {
+        int count = 0;
+        int halfValue = (n * 50)/ 100;
+        while (n >= m) {
+            n -= m;
             count++;
-            if (n == (m * 2)) {
-                n1 /= y;
+            if (halfValue == n) {
+                n /= y;
             }
+
         }
-        System.out.println(n1);
+        System.out.println(n);
         System.out.println(count);
     }
 }
