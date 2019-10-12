@@ -28,7 +28,7 @@ public class Snowballs11 {
              bestSnowball = Math.pow (result,  snowballQuality);
             snowballs.add((int)bestSnowball);
         }
-        snowballs.stream().max(Comparator.comparingInt(Integer::valueOf)).orElse(null);
+        snowballs.stream().max(Comparator.comparingInt(Integer::intValue)).orElse(null);
 
         System.out.printf("%d : %d = %.0f(%d)",snowballSnow,snowballTime,bestSnowball,snowballQuality);
     }
