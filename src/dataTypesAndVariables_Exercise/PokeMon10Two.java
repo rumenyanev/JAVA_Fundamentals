@@ -4,30 +4,28 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class PokeMon10 {
-    public static void main(String[] args) throws IOException {///80/100 ?
-        BufferedReader reader = new BufferedReader
-                (new InputStreamReader(System.in));
+public class PokeMon10Two {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        int n = Integer.parseInt(reader.readLine());
-        int m = Integer.parseInt(reader.readLine());
-        int y = Integer.parseInt(reader.readLine());
+        int N = Integer.parseInt(reader.readLine());
+        int M = Integer.parseInt(reader.readLine());
+        int Y = Integer.parseInt(reader.readLine());
 
         int count = 0;
-        int n1 = n;
+        int halfValue = (N * 50)/ 100;
 
-        while (n1 >= m) {
-            n1 -= m;
+        while (N >= M){
             count++;
-            if (n == (m * 2)) {
-                n1 /= y;
+            N -= M;
+            if (halfValue == N){
+                N/=Y;
             }
-
         }
-
-        System.out.println(n1);
+        System.out.println(N);
         System.out.println(count);
     }
+
 }
 /*Poke Mon
 A Poke Mon is a special type of pokemon which likes to Poke others. But at the end of the day, the Poke Mon wants to keeps statistics, about how many pokes it has managed to make.
