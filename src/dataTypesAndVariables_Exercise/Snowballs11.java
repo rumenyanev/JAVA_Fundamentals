@@ -13,24 +13,40 @@ public class Snowballs11 {
                 (new InputStreamReader(System.in));
 
         int numbersOfSnowball = Integer.parseInt(reader.readLine());
-
-        List<Integer>snowballs = new ArrayList<>();
+        //List<Integer> snowballs = new ArrayList<>();
         int snowballSnow = 0;
         int snowballTime = 0;
         int snowballQuality = 0;
-        double bestSnowball = 0;
+
+        int bestSnowballSnow = 0;
+        int bestSnowballTime = 0;
+        int bestSnowballQuality = 0;
+        double bestSnowballValue = 0;
+
         while (numbersOfSnowball-- > 0) {
+
             snowballSnow = Integer.parseInt(reader.readLine());
             snowballTime = Integer.parseInt(reader.readLine());
             snowballQuality = Integer.parseInt(reader.readLine());
 
-            int result = snowballSnow/snowballTime;
-             bestSnowball = Math.pow (result,  snowballQuality);
-            snowballs.add((int)bestSnowball);
-        }
-        snowballs.stream().max(Comparator.comparingInt(Integer::intValue)).orElse(null);
+            double tempBestSnowballValue =  Math.pow((snowballSnow * 1.0 / snowballTime), snowballQuality);
 
-        System.out.printf("%d : %d = %.0f(%d)",snowballSnow,snowballTime,bestSnowball,snowballQuality);
+            if (tempBestSnowballValue > bestSnowballValue) {
+                bestSnowballValue = tempBestSnowballValue;
+                bestSnowballSnow = snowballSnow;
+                bestSnowballTime = snowballTime;
+                bestSnowballQuality = snowballQuality;
+            }
+
+            /*int result = snowballSnow / snowballTime;
+            bestSnowball = (int) Math.pow(result, snowballQuality);
+            snowballs.add(bestSnowball);*/
+
+        }
+
+        //int bestResult = snowballs.stream().max(Comparator.comparingInt(Integer::intValue)).orElse(null);
+        //snowballSnow} : {snowballTime} = {snowballValue} ({snowballQuality})
+        System.out.printf("%d : %d = %.0f (%d)", bestSnowballSnow, bestSnowballTime, bestSnowballValue, bestSnowballQuality);
     }
 }
 /*Snowballs
