@@ -1,10 +1,9 @@
 package dataTypesAndVariables_Exercise;
-/*
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Snowballs11Two {
@@ -14,32 +13,53 @@ public class Snowballs11Two {
 
         int numbersOfSnowball = Integer.parseInt(reader.readLine());
 
-        List<Integer> snowballs = new ArrayList<>();
+        List<Snowball> snowballs = new ArrayList<>();
         int snowballSnow = 0;
         int snowballTime = 0;
         int snowballQuality = 0;
-        double bestSnowball = 0;
         while (numbersOfSnowball-- > 0) {
             snowballSnow = Integer.parseInt(reader.readLine());
             snowballTime = Integer.parseInt(reader.readLine());
             snowballQuality = Integer.parseInt(reader.readLine());
 
-            int result = snowballSnow/snowballTime;
-            bestSnowball = Math.pow (result,  snowballQuality);
-            snowballs.add((int)bestSnowball);
+            snowballs.add(new Snowball(snowballSnow, snowballTime, snowballQuality));
         }
 
-        int i =  Collections.max(snowballs);
-        snowballs.get(i);
+        Snowball bestSnowBall = snowballs
+                .stream()
+                .max((e1, e2) -> Double.compare(e1.getBestSnowballVolume(), e2.getBestSnowballVolume()))
+                .orElse(null);
 
-        //(String.format("%d : %d = %.0f(%d)",snowballSnow,snowballTime,bestSnowball,snowballQuality))
-
-
-
+        System.out.println(bestSnowBall);
     }
 }
-class Snowballs{
 
+class Snowball {
+    private int snowballSnow;
+    private int snowballTime;
+    private int snowballQuality;
+    private double bestSnowballVolume;
+
+    public Snowball(int snowballSnow, int snowballTime, int snowballQuality) {
+        this.snowballSnow = snowballSnow;
+        this.snowballTime = snowballTime;
+        this.snowballQuality = snowballQuality;
+        setBestSnowball();
+    }
+
+    public void setBestSnowball() {
+        int result = snowballSnow / snowballTime;
+        this.bestSnowballVolume = Math.pow(result, snowballQuality);
+    }
+
+    public double getBestSnowballVolume() {
+        return bestSnowballVolume;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%d : %d = %.0f (%d)", snowballSnow, snowballTime, bestSnowballVolume, snowballQuality);
+    }
 }
 /*Snowballs
 Tony and Andi love playing in the snow and having snowball fights, but they always argue which makes the best snowballs. Тhey have decided to involve you in their fray, by making you write a program which calculates snowball data, and outputs the best snowball value.
