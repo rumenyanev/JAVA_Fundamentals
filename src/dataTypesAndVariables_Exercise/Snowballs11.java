@@ -37,14 +37,7 @@ import java.io.InputStreamReader;
                     bestSnowballQuality = snowballQuality;
                 }
 
-            /*int result = snowballSnow / snowballTime;
-            bestSnowball = (int) Math.pow(result, snowballQuality);
-            snowballs.add(bestSnowball);*/
-
             }
-
-            //int bestResult = snowballs.stream().max(Comparator.comparingInt(Integer::intValue)).orElse(null);
-            //snowballSnow} : {snowballTime} = {snowballValue} ({snowballQuality})
             System.out.printf("%d : %d = %.0f (%d)", bestSnowballSnow, bestSnowballTime, bestSnowballValue, bestSnowballQuality);
         }
     }
