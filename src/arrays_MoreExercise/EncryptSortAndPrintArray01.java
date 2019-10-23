@@ -18,19 +18,17 @@ public class EncryptSortAndPrintArray01 {
         }
         int sum = 0;
 
-
         for (int i = 0; i < strArray.length; i++) {
             String name = strArray[i];
             for (int j = 0; j < name.length(); j++) {
                 char symbol = name.charAt(j);
+
                 if (isVowel(symbol)) {
                     sum += (symbol * name.length());
-                }
-                else if(isConsanant(symbol)){
+                } else /*if (isConsanant(symbol))*/ {
                     sum += (symbol / name.length());
                 }
             }
-
             sums[i] = sum;
             sum = 0;
         }
@@ -48,7 +46,8 @@ public class EncryptSortAndPrintArray01 {
     }
 
     public static boolean isConsanant(char c) {
-        String cons = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
+        String cons = "bcdfghjklmnpqrstvwxyz" +
+                      "BCDFGHJKLMNPQRSTVWXYZ";
         return cons.contains(c + "");
     }
 }

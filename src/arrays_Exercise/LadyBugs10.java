@@ -1,12 +1,38 @@
 package arrays_Exercise;
-/*
+
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class LadyBugs10 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader
                 (new InputStreamReader(System.in));
+
+        int ladyBugSizeField = Integer.parseInt(reader.readLine());
+        int [] indexesLadyBugs = Arrays.stream(reader.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+
+        String line = reader.readLine();
+        while (!line.equals("end")){
+            String[] commands = reader.readLine().split(" ");
+            int ladyBugIndex = Integer.parseInt(commands[0]);
+            String direction = commands[1];
+            int flyLength = Integer.parseInt(commands[2]);
+
+
+
+
+
+            line = reader.readLine();
+        }
+        /*
+        3
+0 1
+0 right 1
+2 right 1
+end
+         */
     }
 }
 /*LadyBugs
@@ -17,10 +43,12 @@ For example, imagine you are given a field with size 3 and ladybugs on indexes 0
 
 If you are given ladybug index that does not have ladybug there, nothing happens. If you are given ladybug index that is outside the field, nothing happens.
 Your job is to create the program, simulating the ladybugs flying around doing nothing. At the end, print all cells in the field separated by blank spaces. For each cell that has a ladybug on it print '1' and for each empty cells print '0'. For the example above, the output should be '0 1 0'.
+
 Input
 On the first line you will receive an integer - the size of the field
 On the second line you will receive the initial indexes of all ladybugs separated by a blank space. The given indexes may or may not be inside the field range
 On the next lines, until you get the "end" command you will receive commands in the format: "{ladybug index} {direction} {fly length}"
+
 Output
 Print the all cells within the field in format: "{cell} {cell} … {cell}"
 If a cell has ladybug in it, print '1'
