@@ -11,7 +11,7 @@ public class BombNumber05 {
         Scanner scanner = new Scanner(System.in);
 
         List<Integer> numbers = Arrays
-                .stream(scanner.nextLine().split("\\s+"))   ///75/100 ..???
+                .stream(scanner.nextLine().split("\\s+"))   ///75/100 ...???
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 
