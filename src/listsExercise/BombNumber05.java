@@ -11,7 +11,7 @@ public class BombNumber05 {
         Scanner scanner = new Scanner(System.in);
 
         List<Integer> numbers = Arrays
-                .stream(scanner.nextLine().split("\\s+"))
+                .stream(scanner.nextLine().split("\\s+"))   ///75/100 ..???
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 
@@ -20,20 +20,17 @@ public class BombNumber05 {
         scanner.close();
 
         int index = numbers.indexOf(num);
-        if (index != -1) {
-            if (index == 0 && power < numbers.size()) {
-                int temp = 0;
-                for (int i = index; i < power; i++) {
+        int sum =0;
+        while (numbers.contains(num)) {
+            int left = Math.max(0, index - power);
+            int right = Math.min(index + power, numbers.size() - 1);
 
-                     temp = i;
-                }numbers.remove(temp);
+            if (right >= left) {
+                numbers.subList(left, right + 1).clear();
             }
-
-
         }
-
-
-        System.out.println(numbers);
+        sum = numbers.stream().reduce(0, (a, b) -> a + b);
+        System.out.println(sum);
     }
 }
 /*Bomb Numbers
