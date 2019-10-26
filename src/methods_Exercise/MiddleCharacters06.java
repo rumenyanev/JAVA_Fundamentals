@@ -7,6 +7,8 @@ public class MiddleCharacters06 {
         Scanner scanner = new Scanner(System.in);
 
         String line = scanner.nextLine();
+
+        scanner.close();
         System.out.println( middleCharacters(line));
 
     }
