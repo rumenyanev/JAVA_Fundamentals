@@ -1,19 +1,32 @@
 package arrays_MoreExercise;
-/*
+
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class RecursiveFibonacci03 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader
                 (new InputStreamReader(System.in));
+
+        int num = Integer.parseInt(reader.readLine());
+        System.out.println(recursiveFibonacci(num));
+    }
+    private static int recursiveFibonacci(int number)  {
+        if (number < 2) return number;
+        return recursiveFibonacci(number - 1) + recursiveFibonacci(number - 2);
     }
 }
 /*⦁	Recursive Fibonacci
-The Fibonacci sequence is quite a famous sequence of numbers. Each member of the sequence is calculated from the sum of the two previous elements. The first two elements are 1, 1. Therefore the sequence goes as 1, 1, 2, 3, 5, 8, 13, 21, 34…
+The Fibonacci sequence is quite a famous sequence of numbers.
+ Each member of the sequence is calculated from the sum of the two previous elements.
+  The first two elements are 1, 1.
+  Therefore the sequence goes as 1, 1, 2, 3, 5, 8, 13, 21, 34…
 The following sequence can be generated with an array, but that’s easy, so your task is to implement recursively.
 So if the function GetFibonacci(n) returns the n’th Fibonacci number we can express it using GetFibonacci(n) = GetFibonacci(n-1) + GetFibonacci(n-2).
-However, this will never end and in a few seconds a StackOverflow Exception is thrown. In order for the recursion to stop it has to have a “bottom”. The bottom of the recursion is GetFibonacci(2) should return 1 and GetFibonacci(1) should return 1.
+However, this will never end and in a few seconds a StackOverflow Exception is thrown.
+In order for the recursion to stop it has to have a “bottom”.
+The bottom of the recursion is GetFibonacci(2) should return 1 and GetFibonacci(1) should return 1.
 Input Format:
 ⦁	On the only line in the input the user should enter the wanted Fibonacci number.
 Output Format:
