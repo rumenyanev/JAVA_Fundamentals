@@ -1,16 +1,49 @@
 package arrays_MoreExercise;
-/*
+
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class LongestIncreasingSubsequence04 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader
                 (new InputStreamReader(System.in));
+
+        int[] numbers = Arrays.stream(reader.readLine().
+                split("\\s+")).
+                mapToInt(Integer::parseInt).
+                toArray();
+
+
+        int[] series = new int[numbers.length];
+        String[] sequences  = new String[numbers.length];
+        for (int i = 0; i < series.length ; i++) {
+            series[i] = 1;
+            sequences [i] = "" + numbers[i];
+            for (int j = 0; j < i ; j++) {
+                if (numbers[i] > numbers[j]) {
+                    if (series[j] + 1 > series[i]) {
+                        series[i] = series[j] + 1;
+                        sequences[i] = sequences[j] + " " + numbers[i];
+                    }
+                }
+            }
+        }
+        int maxIndex = -1;
+        int maxSeries = -1;
+        for (int i = 0; i < sequences.length ; i++) {
+            if (series[i] > maxSeries) {
+                maxSeries = series[i];
+                maxIndex = i;
+            }
+        }
+        System.out.println(sequences[maxIndex]);
     }
 }
 /*Longest Increasing Subsequence (LIS)
-Read a list of integers and find the longest increasing subsequence (LIS). If several such exist, print the leftmost.
+Read a list of integers and find the longest increasing subsequence (LIS).
+If several such exist, print the leftmost.
 Examples
 Input
 1
