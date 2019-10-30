@@ -10,6 +10,8 @@ public class RecursiveFibonacci03 {
                 (new InputStreamReader(System.in));
 
         int num = Integer.parseInt(reader.readLine());
+        reader.close();
+
         System.out.println(recursiveFibonacci(num));
     }
     private static int recursiveFibonacci(int number)  {
