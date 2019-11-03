@@ -1,12 +1,30 @@
 package arrays_MoreExercise;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class PascalTriangle02 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader
                 (new InputStreamReader(System.in));
+        int rows = Integer.parseInt(reader.readLine());
+        int[] previousNumber = new int[1];
+
+        for (int i = 0; i < rows ; i++) {
+            int[] row = new int[i + 1];
+            row[0] = 1;
+            row[i] = 1;
+            for (int j = 1; j < previousNumber.length; j++) {
+                row[j] = previousNumber[j-1] + previousNumber[j];
+            }
+            System.out.println();
+            for (int r : row) {
+                System.out.print(r + " ");
+            }
+            previousNumber = Arrays.copyOf(row,row.length);
+        }
     }
 }
 /*⦁	Pascal Triangle
