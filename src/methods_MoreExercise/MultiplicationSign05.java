@@ -13,7 +13,9 @@ public class MultiplicationSign05 {
         int two = Integer.parseInt(reader.readLine());
         int three = Integer.parseInt(reader.readLine());
 
-        System.out.println(multiplicationSign(one, two, three));  //88/100 ???
+        reader.close();
+
+        System.out.println(multiplicationSign(one, two, three));
 
     }
 

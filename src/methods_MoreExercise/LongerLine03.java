@@ -25,6 +25,7 @@ public class LongerLine03 {
         } else {
             System.out.println(line);
         }
+        scanner.close();
     }
 }
 

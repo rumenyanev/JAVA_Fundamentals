@@ -8,10 +8,16 @@ public class TribonacciSequence04TwoRecursive {
        Scanner scanner = new Scanner(System.in);
         long num = Integer.parseInt(scanner.nextLine());
 
+        scanner.close();
+        if(num <= 0){
+            System.out.println("0");
+        }
+
         PrintTribonacci(num);
     }
 
     private static int GetTribonacci(long num) {
+
         if (num == 1) {
             return 1;
         }
