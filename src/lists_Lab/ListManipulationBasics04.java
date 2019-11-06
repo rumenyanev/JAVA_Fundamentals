@@ -27,7 +27,7 @@ public class ListManipulationBasics04 {
                     break;
                 case "Remove":
                     int numRemuved =  Integer.parseInt(token[1]);
-                    numbers.remove((Object)(numRemuved));
+                    numbers.remove((Object)numRemuved);
 
                     break;
                 case"RemoveAt":
