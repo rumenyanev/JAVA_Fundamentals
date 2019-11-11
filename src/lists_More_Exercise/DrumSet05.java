@@ -13,33 +13,41 @@ public class DrumSet05 {
         BufferedReader reader = new BufferedReader
                 (new InputStreamReader(System.in));
 
-        double savings = Double.parseDouble(reader.readLine());
-        List<Integer> drumSet = Arrays.stream(reader.readLine().
-                split("\\s+")).
-                map(Integer::parseInt).
-                collect(Collectors.toList());
-        List<Integer> currentDrumSet = new ArrayList<>(drumSet);
-        String hitPower = reader.readLine();
-        while (!"Hit it again, Gabsy!".equals(hitPower)) {
+        double money = Double.parseDouble(reader.readLine());
+        List<Integer> drums = Arrays.stream(reader.readLine()
+                .split("\\s+")).map(Integer::parseInt)
+                .collect(Collectors.toList());
 
-            for (int i = 0; i < drumSet.size(); i++) {
 
-                drumSet.set(i, drumSet.get(i) - Integer.parseInt(hitPower));
-                if (drumSet.get(i) <= 0) {
-                    drumSet.set(i, currentDrumSet.get(i));
-                    if((savings - currentDrumSet.get(i)*3) <= 0){
-                        continue;
+        List<Double> prices = drums.stream()
+                .map(e -> e * 3d).collect(Collectors.toList());
+
+        String line = reader.readLine();
+
+        while (!line.equals("Hit it again, Gabsy!")) {
+            int power = Integer.parseInt(line);
+            for (int i = 0; i < drums.size(); i++) {
+                if (drums.get(i) == Integer.MIN_VALUE){
+                    continue;
+                }
+                drums.set(i, drums.get(i) - power);
+                if (drums.get(i) <= 0){
+                    double price = prices.get(i);
+                    if(money >= price){
+                        money -= price;
+                        drums.set(i,(int)price/3);
+                    }else{
+                        drums.set(i,Integer.MIN_VALUE);
+
                     }
-                    savings -= currentDrumSet.get(i)* 3;
-
-
                 }
             }
-            hitPower = reader.readLine();
+            line = reader.readLine();
 
         }
-        System.out.println(drumSet.toString().replaceAll("[\\[\\],]", ""));
-        System.out.printf("Gabsy has %.2flv.",savings);
+        drums.stream().filter(e->e !=Integer.MIN_VALUE)
+                .forEach(d-> System.out.print(d + " "));
+        System.out.printf("%nGabsy has %.2f lv.",money);
     }
 }
 /*     Drum Set
