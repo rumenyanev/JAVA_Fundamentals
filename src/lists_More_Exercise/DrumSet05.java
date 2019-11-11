@@ -46,8 +46,8 @@ public class DrumSet05 {
 
         }
         drums.stream().filter(e->e !=Integer.MIN_VALUE)
-                .forEach(d-> System.out.print(d + " "));
-        System.out.printf("%nGabsy has %.2f lv.",money);
+                .forEach(d-> System.out.print(" "+d));
+        System.out.printf("%nGabsy has %.2flv.",money);
     }
 }
 /*     Drum Set
