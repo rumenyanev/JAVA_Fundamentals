@@ -1,12 +1,10 @@
 package objectsAndClassesMoreExercise.rawData02;
 
-public class Tire {
-    private double pressure;
-    private int age;
+class Tire {
+    private final double pressure;
 
     public Tire(double pressure, int age) {
         this.pressure = pressure;
-        this.age = age;
     }
 
     public double getPressure() {

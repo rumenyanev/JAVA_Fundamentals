@@ -39,26 +39,31 @@ public class Main {
                 //if (tires.size() + 1 > 4) break;
                 tires.add(t);
             }
-            cars.putIfAbsent(model, new Car(model, engine, cargo, tires));
-
+            cars.putIfAbsent(model, new Car(model, engine, cargo, new ArrayList<>(tires)));
+            tires.clear();
         }
-        int a = 1;
         String typeCargo = reader.readLine();
 
-
         if (typeCargo.equals("fragile")) {
+            cars.values()
+                    .stream()
+                    .filter(Car::isHasTire)
+                    .filter(car -> car.getCargo().getType().equals("fragile"))
+                    .forEach(car -> System.out.println(car.getModel()));
             //cars.values().stream().filter(Car::isHasTire).forEach(car-> System.out.println(car.getModel()));
-            a = 1;
-            for (Map.Entry<String, Car> carEntry : cars.entrySet()) {
-                if (carEntry.getValue().isHasTire()) {
-                    System.out.println(carEntry);
+            /*for (Map.Entry<String, Car> carEntry : cars.entrySet()) {
+                if (carEntry.getValue().isHasTire() && carEntry.getValue().getCargo().getType().equals("fragile")) {
+                    System.out.println(carEntry.getValue().getModel());
                 }
-            }
+            }*/
 
         } else if (typeCargo.equals("flamable")) {
-            cars.values().stream().filter(Car::isHasPowerEngine).forEach(car -> System.out.println(car.getModel()));
+            cars.values()
+                    .stream()
+                    .filter(Car::isHasPowerEngine)
+                    .filter(car -> car.getCargo().getType().equals("flamable"))
+                    .forEach(car -> System.out.println(car.getModel()));
         }
-
     }
 }
 /*

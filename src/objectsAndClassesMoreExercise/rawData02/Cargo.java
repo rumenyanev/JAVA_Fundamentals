@@ -1,11 +1,9 @@
 package objectsAndClassesMoreExercise.rawData02;
 
 public class Cargo {
-    private String weight;
-    private String type;
+    private final String type;
 
     public Cargo(String weight, String type) {
-        this.weight = weight;
         this.type = type;
     }
 

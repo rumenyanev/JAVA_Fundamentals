@@ -1,11 +1,9 @@
 package objectsAndClassesMoreExercise.rawData02;
 
-public class Engine {
-    private int speed;
-    private int Power;
+class Engine {
+    private final int Power;
 
     public Engine(int speed, int power) {
-        this.speed = speed;
         Power = power;
     }
 
