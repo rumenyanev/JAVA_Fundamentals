@@ -14,7 +14,6 @@ public class Main {
                 (new InputStreamReader(System.in));
 
         int numOfCars = Integer.parseInt(reader.readLine());
-        String inputData = reader.readLine();
         Map<String, Car> cars = new LinkedHashMap<>();
         Engine engine = null;
         Cargo cargo = null;
@@ -22,11 +21,8 @@ public class Main {
         List<Tire> tires = new ArrayList<>();
 
         while (numOfCars-- > 0) {
-
-            String[] information = inputData.split(" ");
-
+            String[] information = reader.readLine().split(" ");
             String model = information[0];
-
             int engineSpeed = Integer.parseInt(information[1]);
             int enginePower = Integer.parseInt(information[2]);
             engine = new Engine(engineSpeed, enginePower);
@@ -44,15 +40,23 @@ public class Main {
                 tires.add(t);
             }
             cars.putIfAbsent(model, new Car(model, engine, cargo, tires));
-            inputData = reader.readLine();
+
         }
+        int a = 1;
         String typeCargo = reader.readLine();
 
 
         if (typeCargo.equals("fragile")) {
-            cars.values().stream().filter(Car::isHasTire).forEach(car-> System.out.println(car.getModel()));
+            //cars.values().stream().filter(Car::isHasTire).forEach(car-> System.out.println(car.getModel()));
+            a = 1;
+            for (Map.Entry<String, Car> carEntry : cars.entrySet()) {
+                if (carEntry.getValue().isHasTire()) {
+                    System.out.println(carEntry);
+                }
+            }
+
         } else if (typeCargo.equals("flamable")) {
-            cars.values().stream().filter(Car::isHasPowerEngine).forEach(car-> System.out.println(car.getModel()));
+            cars.values().stream().filter(Car::isHasPowerEngine).forEach(car -> System.out.println(car.getModel()));
         }
 
     }
