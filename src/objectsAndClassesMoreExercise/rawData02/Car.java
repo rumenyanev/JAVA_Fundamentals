@@ -1,12 +1,13 @@
 package objectsAndClassesMoreExercise.rawData02;
 
 import java.util.List;
+import java.util.Map;
 
-class Car {
-    private final String model;
-    private final Engine engine;
-    private final Cargo cargo;
-    private final List<Tire> tires;
+public class Car {
+    private String model;
+    private Engine engine;
+    private Cargo cargo;
+    private List<Tire> tires;
 
     public Car(String model, Engine engine, Cargo cargo, List<Tire> tires) {
         this.model = model;
@@ -19,20 +20,28 @@ class Car {
         return model;
     }
 
+    public Engine getEngine() {
+        return engine;
+    }
+
     public Cargo getCargo() {
         return cargo;
     }
 
-    public boolean isHasTire() {
+    public List<Tire> getTires() {
+        return tires;
+    }
+
+    public boolean isHasTire(){
         for (Tire tire : tires) {
-            if (tire.getPressure() < 1) {
+            if (tire.getPressure()<1){
                 return true;
             }
         }
         return false;
     }
 
-    public boolean isHasPowerEngine() {
+    public boolean isHasPowerEngine(){
         return engine.getPower() > 250;
     }
 
