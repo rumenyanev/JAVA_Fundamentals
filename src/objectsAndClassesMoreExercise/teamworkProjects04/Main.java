@@ -26,7 +26,7 @@ public class Main {
                 System.out.println(String.format("%s cannot create another team!", creator));
             } else {
                 teams.put(creator, new Team(nameOfTeam, creator));
-                teams.get(nameOfTeam).setCreator(creator);
+                teams.get(creator).setCreator(creator);
                 System.out.println(String.format("Team %s has been created by %s!",
                         nameOfTeam, creator));
             }
@@ -39,19 +39,64 @@ public class Main {
             String member = dataTeams[0];
             String nameOfTeam = dataTeams[1];
 
-            if (!teams.containsKey(nameOfTeam)) {
+            if (teams.values().stream().noneMatch(t -> t.getName().equals(nameOfTeam))) {
                 System.out.println(String.format("Team %s does not exist!", nameOfTeam));
-            }
-
-            if (teams.entrySet().stream().anyMatch(p -> p.getValue().isHasMember(member))) {
+            } else if (teams.entrySet().stream().anyMatch(p -> p.getValue().isHasMember(member))) {
                 System.out.println(String.format("Member %s cannot join team %s!",
                         member, nameOfTeam));
+            } else {
+                teams
+                        .values()
+                        .stream()
+                        .filter(t -> t.getName().equals(nameOfTeam))
+                        .findFirst()
+                        .ifPresent(team -> team.addMember(member));
             }
-
+            line = reader.readLine();
         }
-
+        System.out.println();
     }
 }
+
+/*
+Input
+3
+Tatyana-CloneClub
+Helena-CloneClub
+Trifon-AiNaBira
+Pesho->aiNaBira
+Pesho->AiNaBira
+Tatyana->Leda
+PeshO->AiNaBira
+Cossima->CloneClub
+end of assignment
+
+        Output
+        Team CloneClub has been created by Tatyana!
+        Team CloneClub was already created!
+        Team AiNaBira has been created by Trifon!
+        Team aiNaBira does not exist!
+        Team Leda does not exist!
+        AiNaBira
+        - Trifon
+        -- Pesho
+        -- PeshO
+        CloneClub
+        - Tatyana
+        -- Cossima
+        Teams to disband:
+*/
+
+
+
+
+
+
+
+
+
+
+
 /*Teamwork projects
 It's time for teamwork projects and you are responsible for making the teams. First you will receive an integer
 - the count of the teams you will have to register. You will be given a user and a team (separated with “-”).
