@@ -3,31 +3,23 @@ package objectsAndClassesMoreExercise.teamworkProjects04;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Team {
-    private String name;
+class Team {
+    private final String name;
     private String creator;
-    private List<String> members;
+    private final List<String> members;
 
-    public Team(String name, String creator) {
+    Team(String name, String creator) {
         this.name = name;
         this.creator = creator;
         this.members = new ArrayList<>();
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCreator(String creator) {
+    void setCreator(String creator) {
         this.creator = creator;
     }
 
-    public void setMembers(List<String> members) {
-        this.members = members;
-    }
-
-    public void addMember(String nameOfMember) {
-        if (!this.members.contains(nameOfMember)){
+    void addMember(String nameOfMember) {
+        if (!this.members.contains(nameOfMember)) {
             this.members.add(nameOfMember);
         }
     }
@@ -36,15 +28,19 @@ public class Team {
         return name;
     }
 
-    public String getCreator() {
+    String getCreator() {
         return creator;
     }
 
-    public List<String> getMembers() {
+    List<String> getMembers() {
         return members;
     }
 
-    public boolean isHasMember(String name){
+    int getCountMembers() {
+        return this.members.size();
+    }
+
+    boolean isHasMember(String name) {
         return this.members.contains(name);
     }
 }

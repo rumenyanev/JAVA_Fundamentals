@@ -3,6 +3,7 @@ package objectsAndClassesMoreExercise.teamworkProjects04;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -10,10 +11,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader
                 (new InputStreamReader(System.in));
-
         Map<String, Team> teams = new LinkedHashMap<>();
-
         int numOfTeams = Integer.parseInt(reader.readLine());
+        if (numOfTeams == 0) return;
         for (int i = 0; i < numOfTeams; i++) {
             String[] information = reader.readLine().split("-");
 
@@ -22,7 +22,7 @@ public class Main {
 
             if (teams.entrySet().stream().anyMatch(t -> t.getValue().getName().equals(nameOfTeam))) {
                 System.out.printf("Team %s was already created!%n", nameOfTeam);
-            } else if (teams.get(creator) != null) {
+            } else if (teams.containsKey(creator)) {
                 System.out.println(String.format("%s cannot create another team!", creator));
             } else {
                 teams.put(creator, new Team(nameOfTeam, creator));
@@ -41,7 +41,8 @@ public class Main {
 
             if (teams.values().stream().noneMatch(t -> t.getName().equals(nameOfTeam))) {
                 System.out.println(String.format("Team %s does not exist!", nameOfTeam));
-            } else if (teams.entrySet().stream().anyMatch(p -> p.getValue().isHasMember(member))) {
+            } else if (teams.entrySet().stream().anyMatch(p -> p.getValue().isHasMember(member)) ||
+                    teams.values().stream().anyMatch(c -> c.getCreator().equals(member))) {
                 System.out.println(String.format("Member %s cannot join team %s!",
                         member, nameOfTeam));
             } else {
@@ -54,45 +55,33 @@ public class Main {
             }
             line = reader.readLine();
         }
-        System.out.println();
+        teams
+                .entrySet()
+                .stream()
+                .filter(tt -> tt.getValue().getCountMembers() > 0)
+                .sorted((t1, t2) -> {
+                    if (t2.getValue().getCountMembers() != t1.getValue().getCountMembers()) {
+                        return Integer.compare(t2.getValue().getCountMembers(), t1.getValue().getCountMembers());
+                    } else {
+                        return t1.getValue().getName().compareTo(t2.getValue().getName());
+                    }
+                })
+                .forEach(e -> {
+                    System.out.println(e.getValue().getName());
+                    System.out.println("- " + e.getValue().getCreator());
+                    e.getValue().getMembers().stream()
+                            .sorted(String::compareTo)
+                            .forEach(e1 -> System.out.println("-- " + e1));
+                });
+        System.out.println("Teams to disband:");
+        teams
+                .values()
+                .stream()
+                .filter(ttt -> ttt.getCountMembers() == 0)
+                .sorted(Comparator.comparing(Team::getName))
+                .forEach(e -> System.out.println(e.getName()));
     }
 }
-
-/*
-Input
-3
-Tatyana-CloneClub
-Helena-CloneClub
-Trifon-AiNaBira
-Pesho->aiNaBira
-Pesho->AiNaBira
-Tatyana->Leda
-PeshO->AiNaBira
-Cossima->CloneClub
-end of assignment
-
-        Output
-        Team CloneClub has been created by Tatyana!
-        Team CloneClub was already created!
-        Team AiNaBira has been created by Trifon!
-        Team aiNaBira does not exist!
-        Team Leda does not exist!
-        AiNaBira
-        - Trifon
-        -- Pesho
-        -- PeshO
-        CloneClub
-        - Tatyana
-        -- Cossima
-        Teams to disband:
-*/
-
-
-
-
-
-
-
 
 
 
