@@ -10,7 +10,7 @@ public class Car {
         this.model = model;
         this.engine = engine;
         this.weight = 0;
-        this.color = null;
+        this.color = "n/a";
     }
 
     public String getModel() {
@@ -37,9 +37,19 @@ public class Car {
         this.color = color;
     }
 
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     @Override
     public String toString() {
-        return String.format("%s:%n %s:%n %d:%n %s:%n",this.model,this.engine,this.weight,this.color);
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.model).append(":").append(System.lineSeparator());
+        sb.append(engine);
+        if (this.weight == 0) {
+            sb.append("Weight: n/a").append(System.lineSeparator());
+        } else {
+            sb.append("Weight: ").append(this.getWeight()).append(System.lineSeparator());
+        }
+        sb.append("Color: ").append(this.color).append(System.lineSeparator());
+        return sb.toString().trim();
     }
 }
 
@@ -113,9 +123,6 @@ FordMondeo DSL-13 Purple
 VolkswagenPolo V7-54 1200 Yellow
 VolkswagenPassat DSL-10 1375 Blue
 FordFusion DSL-13
-
-
-
 
 Output
 FordMondeo:

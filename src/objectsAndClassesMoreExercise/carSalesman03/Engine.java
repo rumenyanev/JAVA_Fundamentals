@@ -37,9 +37,11 @@ public class Engine {
         this.efficiency = efficiency;
     }
 
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     @Override
     public String toString() {
-        return String.format("%s:%n %d:%n %d:%n %s:%n",this.model,this.power,this.displacement,this.efficiency);
+        return String.format("%s:%n" + "Power: %d%n" + "Displacement: %s%n" + "Efficiency: %s%n",
+                this.model, this.power, this.displacement, this.efficiency);
     }
 }/*Power: 220
 Displacement: 50
