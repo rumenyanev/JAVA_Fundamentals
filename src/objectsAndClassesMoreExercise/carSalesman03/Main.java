@@ -3,8 +3,8 @@ package objectsAndClassesMoreExercise.carSalesman03;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -12,7 +12,7 @@ public class Main {
                 (new InputStreamReader(System.in));
 
         int numOfDataEngine = Integer.parseInt(reader.readLine());
-        Map<String, Engine> enginelist = new LinkedHashMap<>();
+        List<Engine> engineList = new LinkedList<>();
 
         while (numOfDataEngine-- > 0) {
             String[] inputDataEngine = reader.readLine().split("\\s+");
@@ -30,36 +30,39 @@ public class Main {
                 String efficiency = inputDataEngine[3];
                 engine.setEfficiency(efficiency);
             }
-            enginelist.putIfAbsent(engine.getModel(), engine);
+            Engine engine1 = new Engine(model,power);
+            engineList.add(engine1);
         }
-        Map<String, Car> cars = new LinkedHashMap<>();
+       List<Car> carList = new LinkedList<>();
         int numOfDataCar = Integer.parseInt(reader.readLine());
         while (numOfDataCar-- > 0) {
             String[] inputDataCar = reader.readLine().split("\\s+");
             String model = inputDataCar[0];
             String engine = inputDataCar[1];
-            Engine engi = enginelist.get(engine);
+           Engine engi = engineList.get(1);
 
-            Car car = new Car(model, engi);
+            Car car = new Car(model,engi);
             if (inputDataCar.length == 3) {
                 if(isDigit(inputDataCar[2])) {
-                    int weight = Integer.parseInt(inputDataCar[2]);
+                    String weight = inputDataCar[2];
                     car.setWeight(weight);
                 }else {
                     String color = inputDataCar[2];
                     car.setColor(color);
                 }
             } else if (inputDataCar.length == 4) {
-                int weight = Integer.parseInt(inputDataCar[2]);
+                String weight = inputDataCar[2];
                 car.setWeight(weight);
                 String color = inputDataCar[3];
                 car.setColor(color);
             }
-            cars.putIfAbsent(car.getModel(),car);
-
+       //    Engine currentEngine = engineList.stream().filter(e -> e.getModel().equals(engine))
+        //            .findFirst().get();
+            Car cars = new Car(model,engi);
+            carList.add(cars);
         }
-        for (Car value : cars.values()) {
-            System.out.println(value);
+        for (Car car : carList) {
+            System.out.println(car);
         }
     }
     private static boolean isDigit(String str){
