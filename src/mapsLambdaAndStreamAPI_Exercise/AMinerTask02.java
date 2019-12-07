@@ -19,6 +19,7 @@ public class AMinerTask02 {
                 data.put(input,data.get(input)+ quantity);
             }
         }
+        scanner.close();
         data.forEach((key,value)-> System.out.println(String.format("%s -> %d",key,value)));
     }
 }

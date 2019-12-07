@@ -51,6 +51,7 @@ public class LegendaryFarming03 {
             }
 
         }
+        scanner.close();
 
         keyItems.entrySet().stream().sorted
                 (Map.Entry.<String,Integer>comparingByValue().reversed().

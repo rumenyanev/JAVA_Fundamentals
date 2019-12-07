@@ -20,6 +20,7 @@ public class CountCharsInAString01 {
                 countChars.put(symbol, countChars.get(symbol) + 1);
             }
         }
+        scanner.close();
         countChars.forEach((key, value) -> System.out.println(String.format("%s -> %d", key, value)));
 
     }

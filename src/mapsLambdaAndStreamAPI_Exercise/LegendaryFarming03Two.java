@@ -35,6 +35,7 @@ public class LegendaryFarming03Two {
                 }
             }
         }
+        scanner.close();
 
         System.out.printf("%s obtained!%n", item);
         materials
