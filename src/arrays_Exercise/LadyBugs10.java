@@ -1,38 +1,58 @@
 package arrays_Exercise;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.Scanner;
 
 public class LadyBugs10 {
-    public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader
-                (new InputStreamReader(System.in));
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        int ladyBugSizeField = Integer.parseInt(reader.readLine());
-        int [] indexesLadyBugs = Arrays.stream(reader.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+        int fieldSize = Integer.parseInt(scanner.nextLine());
 
-        String line = reader.readLine();
-        while (!line.equals("end")){
-            String[] commands = reader.readLine().split(" ");
-            int ladyBugIndex = Integer.parseInt(commands[0]);
-            String direction = commands[1];
-            int flyLength = Integer.parseInt(commands[2]);
+        String[] indexes = scanner.nextLine().split(" ");
 
-
-
-
-
-            line = reader.readLine();
+        int[] field = new int[fieldSize];
+        for (int i = 0; i < indexes.length; i++) {
+            int index = Integer.parseInt(indexes[i]);
+            if (index >= 0 && index < fieldSize) {
+                field[index] = 1;
+            }
         }
-        /*
-        3
-0 1
-0 right 1
-2 right 1
-end
-         */
+        String comand = scanner.nextLine();
+        while (!comand.equals("end")) {
+            String[] comandArgs = comand.split("\\s+");
+            int index = Integer.parseInt(comandArgs[0]);
+            String cmd = comandArgs[1];
+            int flyLength = Integer.parseInt(comandArgs[2]);
+
+            if (index < 0 || index > fieldSize - 1 || field[index] == 0) {
+                comand = scanner.nextLine();
+                continue;
+            }
+            field[index] = 0;
+            if (cmd.equals("right")) {
+                index += flyLength;
+
+                while (index < fieldSize && field[index] == 1) {
+                    index += flyLength;
+
+                }
+                if (index < fieldSize) {
+                    field[index] = 1;
+                }
+            } else {
+                index -= flyLength;
+                while (index >= 0 && field[index] == 1) {
+                    index -= flyLength;
+                }
+                if (index >= 0) {
+                    field[index] = 1;
+                }
+            }
+            comand = scanner.nextLine();
+        }
+        for (int i = 0; i <field.length ; i++) {
+            System.out.print(field[i] + " ");
+        }
+        System.out.println();
     }
 }
 /*LadyBugs
