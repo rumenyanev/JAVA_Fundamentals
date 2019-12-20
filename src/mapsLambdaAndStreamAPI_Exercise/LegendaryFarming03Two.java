@@ -17,7 +17,7 @@ public class LegendaryFarming03Two {
         boolean end = false;
 
         while (!end) {
-            String data[] = scanner.nextLine().toLowerCase().split("\\s+");
+            String[] data = scanner.nextLine().toLowerCase().split("\\s+");
 
             for (int i = 0; i < data.length; i += 2) {
 

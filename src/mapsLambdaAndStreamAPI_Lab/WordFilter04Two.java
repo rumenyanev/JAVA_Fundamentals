@@ -10,7 +10,7 @@ public class WordFilter04Two {
             Scanner scanner = new Scanner(System.in);
 
             Arrays.stream(scanner.nextLine().split("\\s+"))
-                    .filter(n->n.length()%2==0).forEach(e-> System.out.println(e));
+                    .filter(n->n.length()%2==0).forEach(System.out::println);
 
         }
 

@@ -11,14 +11,14 @@ public class WordFilter04 {
         String[]words = scanner.nextLine().split("\\s+");
 
         List<String> evenLenght = new ArrayList<>() ;
-        for (int i = 0; i < words.length ; i++) {
-            if(words[i].length()%2 == 0){
-                evenLenght.add(words[i]);
+        for (String word : words) {
+            if (word.length() % 2 == 0) {
+                evenLenght.add(word);
             }
         }
         String result = "";
-        for (int i = 0; i <evenLenght.size() ; i++) {
-           result = evenLenght.get(i);
+        for (String s : evenLenght) {
+            result = s;
             System.out.println(result);
         }
 
